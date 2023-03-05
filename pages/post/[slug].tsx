@@ -3,7 +3,7 @@ import PortableText from "react-portable-text";
 import Header from "../../components/Header";
 import { sanityClient, urlFor } from '../../sanity';
 import { Post } from "../../typings";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, } from "react-hook-form";
 import { useState } from "react";
 
 interface IFormInput {
@@ -24,7 +24,7 @@ function Post({ post }: Props) {
 
     const { register, handleSubmit, formState: { errors }, } = useForm();
 
-    const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    const submit: SubmitHandler<IFormInput> = async (data) => {
         await fetch('/api/createComment', {
             method: "POST",
             body: JSON.stringify(data),
@@ -87,7 +87,7 @@ function Post({ post }: Props) {
                 </p>
             </div> 
         ): (
-            <form onSubmit={handleSubmit( onSubmit )} className="flex flex-col p-5 max-w-2xl mx-auto mb-10 border ">
+            <form onSubmit={handleSubmit(submit)} className="flex flex-col p-5 max-w-2xl mx-auto mb-10 border ">
                 <h3 className="text-sm text-yellow-500 ">Enjoyed this article?</h3>
                 <h4 className="text-3xl font-bold">Leave a comment below!</h4>
                 <hr className="py-3 mt-2" />
