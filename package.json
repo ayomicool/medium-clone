@@ -2,12 +2,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "build": "next build, npm run build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@sanity/client": "^5.2.2",
     "@sanity/image-url": "^1.0.2",
+    "@sanity/vision": "^3.5.1",
     "next": "latest",
     "next-sanity": "^4.1.5",
     "react": "18.2.0",
