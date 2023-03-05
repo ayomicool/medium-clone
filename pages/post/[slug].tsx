@@ -13,6 +13,9 @@ interface IFormInput {
     comment: string; 
 }
 
+interface FieldValues extends IFormInput {
+  // additional properties here
+}
 
 interface Props {
     post: Post;
@@ -24,7 +27,7 @@ function Post({ post }: Props) {
 
     const { register, handleSubmit, formState: { errors }, } = useForm();
 
-    const submit: SubmitHandler<IFormInput> = async (data) => {
+    const onSubmit: SubmitHandler<FieldValues> = async (data) => {
         await fetch('/api/createComment', {
             method: "POST",
             body: JSON.stringify(data),
@@ -35,6 +38,8 @@ function Post({ post }: Props) {
             setSubmitted(false);
         })
     };
+
+    
 
   return (
     <main>
@@ -87,7 +92,8 @@ function Post({ post }: Props) {
                 </p>
             </div> 
         ): (
-            <form onSubmit={handleSubmit(submit)} className="flex flex-col p-5 max-w-2xl mx-auto mb-10 border ">
+            
+            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col p-5 max-w-2xl mx-auto mb-10 border " method="post">
                 <h3 className="text-sm text-yellow-500 ">Enjoyed this article?</h3>
                 <h4 className="text-3xl font-bold">Leave a comment below!</h4>
                 <hr className="py-3 mt-2" />
